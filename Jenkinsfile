@@ -11,12 +11,12 @@ pipeline {
         git(branch: '/master', url: 'https://github.com/aggads/Maven-demo')
       }
     }
-    stage('Clean') {
+    stage('Build') {
       steps {
         sh 'mvn clean'
       }
     }
-    stage('test') {
+    stage('Test') {
       steps {
         sh 'mvn test'
       }

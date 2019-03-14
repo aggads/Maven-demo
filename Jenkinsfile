@@ -1,10 +1,39 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
-      agent any
+    stage('Clean') {
+      parallel {
+        stage('Clean') {
+          agent any
+          steps {
+            sh 'mvn clean '
+          }
+        }
+        stage('Validate') {
+          steps {
+            sh 'mvn validate'
+          }
+        }
+      }
+    }
+    stage('Test') {
       steps {
-        sh 'mvn clean '
+        sh 'mvn test'
+      }
+    }
+    stage('Package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+    stage('Install') {
+      steps {
+        sh 'mvn install'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'mvn deploy'
       }
     }
   }

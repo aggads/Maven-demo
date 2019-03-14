@@ -6,12 +6,12 @@ pipeline {
 
   }
   stages {
-    stage('Pull') {
+    stage('Build') {
       steps {
         git(branch: '/master', url: 'https://github.com/aggads/Maven-demo')
       }
     }
-    stage('Build') {
+    stage('Clean') {
       steps {
         sh 'mvn clean'
       }

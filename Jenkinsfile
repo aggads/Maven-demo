@@ -1,19 +1,16 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3-alpine'
+      args '-v /root/.m2:/root/.m2'
+    }
+
+  }
   stages {
-    stage('Clean') {
-      parallel {
-        stage('Clean') {
-          agent any
-          steps {
-            sh 'mvn clean '
-          }
-        }
-        stage('Validate') {
-          steps {
-            sh 'mvn validate'
-          }
-        }
+    stage('Build') {
+      agent any
+      steps {
+        sh 'mvn -B -DskipTests clean package'
       }
     }
     stage('Test') {
@@ -21,14 +18,9 @@ pipeline {
         sh 'mvn test'
       }
     }
-    stage('Package') {
+    stage('PackageDeliver') {
       steps {
-        sh 'mvn package'
-      }
-    }
-    stage('Install') {
-      steps {
-        sh 'mvn install'
+        sh './jenkins/scripts/deliver.sh'
       }
     }
   }

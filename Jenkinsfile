@@ -1,8 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Clone') {
       agent any
+      steps {
+        git(branch: '/master*', url: 'https://github.com/aggads/Maven-demo.git')
+      }
+    }
+    stage('Build') {
       steps {
         sh 'mvn -B -DskipTests clean package'
       }

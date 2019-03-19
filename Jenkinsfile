@@ -4,7 +4,7 @@ pipeline {
     stage('Clone') {
       agent any
       steps {
-        git(branch: '/master*', url: 'https://github.com/aggads/Maven-demo', credentialsId: 'ID1')
+        git(branch: '/master*', url: 'https://github.com/aggads/Maven-demo')
       }
     }
     stage('Build') {

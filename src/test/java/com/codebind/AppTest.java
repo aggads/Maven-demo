@@ -14,17 +14,18 @@ public class AppTest {
 //	public void AddBefore(){
 //		System.out.println("\n -------------------");
 //	}
-	@After
+/*	@After
 	public void AddFailded(){
 		System.out.println("\n -------------------");
-	}
+	}*/
 	@Test
 	public void Addtest(){
 		try {
 			App junit = new App();
 			int result = junit.add(100, 200);
 			assertEquals(300, result);
-			System.out.println("\n Add Done !\n");			 
+			System.out.println("\n Add Done !\n");
+			System.out.println("\n -------------------");			 
 		} catch(Exception e) {
 			fail("Expected an IndexOutOfBoundsException to be thrown");
 			e.printStackTrace();
@@ -39,6 +40,7 @@ public class AppTest {
 			String result = junit.Concat("Hello", "World");
 			assertEquals("HelloWorld", result);
 			System.out.println("\n Concat Done !\n");
+			System.out.println("\n -------------------");
 		} catch (Exception e) {
 			e.printStackTrace();
 //			System.out.println("\n Concat Failed !\n");
